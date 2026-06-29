@@ -6,20 +6,19 @@ jobs:
     steps:
       - name: Dependances
         run: |
-                docker run --rm \
-                  -v "$PWD":/project \
-                  -v "$HOME/.cache/trivy":/root/.cache/ \
-                  aquasec/trivy:latest fs \
-                  --file-patterns "pip:.*\.txt" \
-                  .
+          docker run --rm \
+          -v "$PWD":/project \
+          -v "$HOME/.cache/trivy":/root/.cache/ \
+          aquasec/trivy:latest fs \
+          --file-patterns "pip:.*\.txt" \
+          .
   Dockerfile:
     runs-on: ubuntu-latest
     needs: Dependances
     steps:
       - name: Test Dockerfile
         run: |
-  
-          
+          echo "ecrire ici le scrypt de contrôle du Dockerfile"
   Deploy:
     runs-on: ubuntu-latest
     needs: Dockerfile
@@ -27,3 +26,4 @@ jobs:
       - name: Deploy
         run: |
           echo "Rien à faire ici. Votre application est prête à être déployée"
+          
